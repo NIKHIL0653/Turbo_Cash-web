@@ -1,0 +1,439 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Minimal scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(156 163 175); /* gray-400 */
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(107 114 128); /* gray-500 */
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(75 85 99); /* gray-600 */
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(55 65 81); /* gray-700 */
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(156 163 175) transparent;
+}
+
+.dark * {
+  scrollbar-color: rgb(75 85 99) transparent;
+}
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 186 100% 41%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 186 100% 94%;
+    --accent-foreground: 186 100% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 13% 18%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 13% 21%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 13% 21%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 186 100% 41%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 215 13.8% 34.1%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 13.8% 34.1%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+
+    --accent: 215 13.8% 34.1%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 13.8% 34.1%;
+    --input: 215 13.8% 34.1%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 220 13% 18%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 13.8% 34.1%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 215 13.8% 34.1%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: #9ca3af;
+  }
+
+  .dark .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #4b5563;
+  }
+
+    .dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: #6b7280;
+  }
+
+  /* Marquee animations */
+  @keyframes marquee-up {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  @keyframes marquee-down {
+    0% {
+      transform: translateY(-50%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-marquee-up {
+    animation: marquee-up 20s linear infinite;
+  }
+
+  .animate-marquee-down {
+    animation: marquee-down 20s linear infinite;
+  }
+
+    /* Pause animation on hover */
+  .animate-marquee-up:hover,
+  .animate-marquee-down:hover {
+    animation-play-state: paused;
+  }
+
+      /* Synchronized card heights for dashboard sections */
+  .dashboard-section-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 1024px) {
+    .dashboard-section-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+
+    .dashboard-section-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 300px;
+    }
+
+    .dashboard-section-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .goals-progress-container {
+      overflow-y: auto;
+      min-height: 200px;
+      scrollbar-width: thin;
+      scrollbar-color: #d1d5db transparent;
+    }
+
+    .goals-progress-container::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .goals-progress-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .goals-progress-container::-webkit-scrollbar-thumb {
+      background-color: #d1d5db;
+      border-radius: 3px;
+    }
+
+    .goals-progress-container::-webkit-scrollbar-thumb:hover {
+      background-color: #9ca3af;
+    }
+  }
+
+  /* Mobile responsive behavior */
+  @media (max-width: 1023px) {
+    .dashboard-section-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dashboard-section-content {
+      flex-grow: 1;
+    }
+
+    .goals-progress-container {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+  }
+
+  /* Learn button - clean blue design */
+  .learn-btn {
+    border-radius: 10px;
+  }
+
+  /* Fun learning animations */
+  .learn-card {
+    /* Removed hover effects */
+  }
+
+  .learn-stat {
+    animation: countUp 0.8s ease-out;
+  }
+
+  @keyframes countUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .badge-earned {
+    animation: badgeEarn 0.6s ease-out;
+  }
+
+  @keyframes badgeEarn {
+    0% {
+      opacity: 0;
+      transform: scale(0.5) rotate(-10deg);
+    }
+    50% {
+      transform: scale(1.2) rotate(5deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  .course-unlock {
+    animation: unlock 0.8s ease-out;
+  }
+
+  @keyframes unlock {
+    0% {
+      opacity: 0.5;
+      transform: scale(0.95);
+      filter: brightness(0.7);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+      filter: brightness(1);
+    }
+  }
+
+  .floating-icon {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .progress-fill {
+    animation: fillProgress 1s ease-out;
+  }
+
+  @keyframes fillProgress {
+    from {
+      width: 0%;
+    }
+    to {
+      width: var(--progress-width);
+    }
+  }
+
+  /* Course content formatting */
+  .course-content {
+    line-height: 1.7;
+  }
+
+  .course-content h3 {
+    @apply text-xl font-bold text-foreground mb-4 mt-6 first:mt-0;
+    color: #2563eb;
+  }
+
+  .course-content h4 {
+    @apply text-lg font-semibold text-foreground mb-3 mt-5;
+    color: #059669;
+  }
+
+  .course-content h5 {
+    @apply text-base font-semibold text-foreground mb-2 mt-4;
+    color: #7c3aed;
+  }
+
+  .course-content p {
+    @apply text-muted-foreground mb-4 leading-relaxed;
+  }
+
+  .course-content ul, .course-content ol {
+    @apply mb-4 pl-6 space-y-2;
+  }
+
+  .course-content li {
+    @apply text-muted-foreground leading-relaxed;
+    position: relative;
+  }
+
+  .course-content ul li::before {
+    content: "•";
+    color: #3b82f6;
+    font-weight: bold;
+    position: absolute;
+    left: -1rem;
+  }
+
+  .course-content ol li {
+    counter-increment: item;
+  }
+
+  .course-content ol {
+    counter-reset: item;
+  }
+
+  .course-content ol li::before {
+    content: counter(item) ".";
+    color: #059669;
+    font-weight: bold;
+    position: absolute;
+    left: -1.5rem;
+  }
+
+  .course-content strong {
+    @apply font-semibold;
+    color: #1f2937;
+  }
+
+  .dark .course-content h3 {
+    color: #60a5fa;
+  }
+
+  .dark .course-content h4 {
+    color: #34d399;
+  }
+
+  .dark .course-content h5 {
+    color: #a78bfa;
+  }
+
+  .dark .course-content strong {
+    color: #f9fafb;
+  }
+}
